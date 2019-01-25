@@ -18,6 +18,7 @@ app.post('/results', (req, res) => {
     }
 });
 
+console.log('started @' + new Date())
 console.log(module)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
