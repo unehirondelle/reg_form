@@ -1,0 +1,25 @@
+{
+  "name": "registration-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "fs": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IP",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unehirondelle/reg_form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unehirondelle/reg_form/issues"
+  },
+  "homepage": "https://github.com/unehirondelle/reg_form#readme"
+}
