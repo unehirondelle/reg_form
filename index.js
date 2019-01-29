@@ -1,6 +1,7 @@
 const express = require('express'); //create a function and store it in the const;
 const app = express(); //call the function and store the result in the const;
 const port = process.env.PORT || 3000; //set the environment variable
+const sqlite3 = require('sqlite3').verbose()
 
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: __dirname + "/public/" } );
@@ -32,4 +33,28 @@ console.log('started @' + new Date())
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
+var db = new sqlite3.Database('./db/reg_form_db.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log('Connected to the reg_form_db database.');
+});
+
+db.serialize(() => {
+    db.each(`SELECT firstName as id,
+                  lastName as name
+           FROM users`, (err, row) => {
+        if (err) {
+            console.error(err.message);
+        }
+        console.log(row.id + "\t" + row.name);
+    });
+});
+
+db.close((err) => {
+    if (err) {
+        console.error(err.message);
+    }
+    console.log('Close the database connection.');
+});
 
