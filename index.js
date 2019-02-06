@@ -26,9 +26,9 @@ req (request) and res (result) are arguments of a callback function;*/
 
 app.use('/static', express.static('public'));
 
-app.post('/saveResults', function (request, response) {
-    var firstName = request.body.firstName;
-    var lastName = request.body.lastName;
+app.post('/saveResults', function (req, res) {
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
     console.log(firstName, lastName);
     db.run('INSERT INTO users(firstName, lastName) VALUES(?, ?)', [firstName, lastName], function (err) {
         if (err) {
@@ -36,7 +36,7 @@ app.post('/saveResults', function (request, response) {
         }
         console.log('A row has been inserted with rowid ${this.lastID}');
     });
-    response.send('ok');
+    res.send("The new user has been registered!");
 });
 
 app.get('/getResults', (req, res) => {
