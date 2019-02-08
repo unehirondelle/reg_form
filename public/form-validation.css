@@ -3,3 +3,10 @@
 }
 
 .lh-condensed { line-height: 1.25; }
+
+
+ .error {
+   color: red;
+   font-family: verdana, Helvetica;
+   background-color: #ffa8a8;
+ }

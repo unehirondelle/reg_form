@@ -1,7 +1,7 @@
 const express = require('express'); //create a function and store it in the const;
 const app = express(); //call the function and store the result in the const;
 const port = process.env.PORT || 3000; //set the environment variable
-const sqlite3 = require('sqlite3').verbose()
+const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/reg_form_db.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         return console.error(err.message);
@@ -9,9 +9,11 @@ const db = new sqlite3.Database('./db/reg_form_db.db', sqlite3.OPEN_READWRITE, (
     console.log('Connected to the reg_form_db database.');
 });
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/public/index.html');});
+/*app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname + "/public/"});
-}); //make the default page
+});*/ //make the default page
 
 /*enable parsing of json objects in a body of a request to execute the POST method
 (it's disabled by default):*/
@@ -24,7 +26,8 @@ app.get('/', (req, res) => res.send('Hello World!!'));
 /*get the data (incoming request to the server) from root ('/');
 req (request) and res (result) are arguments of a callback function;*/
 
-app.use('/static', express.static('public'));
+/*app.use('/static', express.static('public'));*/ //wrong code, doesn't allow to get local links for js and css'
+app.use(express.static(__dirname + "/public"));
 
 app.post('/saveResults', function (req, res) {
     var firstName = req.body.firstName;
