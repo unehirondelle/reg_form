@@ -9,11 +9,37 @@ const db = new sqlite3.Database('./db/reg_form_db.db', sqlite3.OPEN_READWRITE, (
     console.log('Connected to the reg_form_db database.');
 });
 
+/*enable parsing of json objects in a body of a request to execute the POST method
+(it's disabled by default):*/
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json()); //use the part of middleware in the app
+
+
 app.set("views", "./views");
 app.set("view engine", "pug");
-app.get('/newUsers', function (req, res) {
-    res.render('index', { title: 'Hey', message: 'Hello there!' })
-})
+app.post('/search', (req, res) => {
+    let criterion = req.body.criterion;
+    criterion = ('%' + criterion + '%').toUpperCase();
+    let sqlResults = [];
+    db.all("select * from users where upper(firstName) like ? " +
+        "UNION ALL select * from users where upper(lastName) like ?", [criterion, criterion], (err, rows) => {
+        if (err) {
+            console.error(err.message);
+        }
+        for (k in rows){
+            var row = rows[k];
+            sqlResults.push(row);
+        }
+        res.render('index', {rows: sqlResults,
+            criterion: req.body.criterion,
+            error: err});
+    });
+});
+
+app.get('/search', function (req, res) {
+    res.render('index', {});
+});
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');});//make the default page
@@ -21,11 +47,6 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', {root: __dirname + "/public/"});
 });*/ //make the default page; this piece of code with (!) piece of code doesn't allow to get the local links for js and css
 
-/*enable parsing of json objects in a body of a request to execute the POST method
-(it's disabled by default):*/
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json()); //use the part of middleware in the app
 
 
 app.get('/', (req, res) => res.send('Hello World!!'));
