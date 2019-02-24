@@ -30,7 +30,7 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="reg_form_jquery_validator.js"></script>
 </head>
 
 <body>
@@ -41,166 +41,96 @@
         <p class="lead">Please, fill out the registration form below.</p>
     </div>
 
-    <form action="/saveResults" class="needs-validation" id="customValidation"
-          method="POST"
+    <form action="/saveResults" class="needs-validation" id="newUserForm" name="newUserForm" method="POST"
           novalidate>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="validationFirstName">First name</label>
+                <label for="firstName">First name</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationFirstName" placeholder="First name" maxlength="50"
-                       data-toggle="tooltip" data-placement="top"
-                       title="Only alphabetic characters, please. No more than 50." required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a valid first name
-                </div>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationMiddleName">Middle name</label>
-                <input type="text" class="form-control" id="validationMiddleName" placeholder="Middle name"
-                       maxlength="50"
-                       data-toggle="tooltip" data-placement="top"
-                       title="Only alphabetic characters, please. No more than 50.">
+                <label for="middleName">Middle name</label>
+                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationLastName">Last name</label>
+                <label for="lastName">Last name</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationLastName" placeholder="Last name" maxlength="50"
-                       data-toggle="tooltip" data-placement="top"
-                       title="Only alphabetic characters, please. No more than 50." required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a valid last name
-                </div>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name">
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationUsername">Username</label>
+                <label for="username">Username</label>
                 <small class="text-muted">(required)</small>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="validationUsername" placeholder="Username"
-                           maxlength="30"
-                           data-toggle="tooltip" data-placement="top" title="Please, no more than 30 characters."
-                           required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationEmail">Email address</label>
+                <label for="email">Email address</label>
                 <small class="text-muted">(required)</small>
                 <div class="input-group">
-                    <input type="email" class="form-control" id="validationEmail" name="email1"
-                           placeholder="Email address"
-                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please provide your email address.
-                    </div>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationConfirmEmail">Confirm email address</label>
+                <label for="confirmEmail">Confirm email address</label>
                 <small class="text-muted">(required)</small>
                 <div class="input-group">
-                    <input type="email" class="form-control" id="validationConfirmEmail" name="email2"
-                           placeholder="Confirm email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                           data-toggle="tooltip" data-placement="top" title="Confirm your email, please" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please confirm your email address.
-                    </div>
+                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail"
+                           placeholder="Confirm email address">
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationAddress01">Address. First lane</label>
+                <label for="address01">Address. First lane</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationAddress01" placeholder="Street number" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide an address.
-                </div>
+                <input type="text" class="form-control" id="address01" name="address01" placeholder="Street number">
+
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationAddress02">Second lane #</label>
-                <input type="text" class="form-control" id="validationAddress02" placeholder="Unit, Apartment #">
+                <label for="address02">Second lane #</label>
+                <input type="text" class="form-control" id="address02" name="address02" placeholder="Unit, Apartment #">
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-3 mb-3">
-                <label for="validationCity">City</label>
+                <label for="city">City</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationCity" placeholder="City" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a city name.
-                </div>
+                <input type="text" class="form-control" id="city" name="city" placeholder="City">
+
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationCustom04">State/Region</label>
+                <label for="stateRegion">State/Region</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationCustom04" placeholder="State/Region"
-                       data-toggle="tooltip" data-placement="top"
-                       title="Please provide a state o region name. If it's not applicable - please type N/A" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a state o region name. If it's not applicable - please type N/A
-                </div>
+                <input type="text" class="form-control" id="stateRegion" name="stateRegion" placeholder="State/Region">
+
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationZip">Zip</label>
+                <label for="zip">Zip</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationZip" placeholder="Zip" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a zip code.
-                </div>
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip">
+
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationCountry">Country</label>
+                <label for="country">Country</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationCountry" placeholder="Country" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a country name.
-                </div>
+                <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationCustomPhone">Phone</label>
+                <label for="phone">Phone</label>
                 <small class="text-muted">(required)</small>
-                <input type="text" class="form-control" id="validationCustomPhone" required> <!--data-toggle="tooltip"
-                       data-placement="top"
+                <input type="text" class="form-control" id="phone" name="phone">
+                <!--removed code to make jquery code work:-->
+                <!--data-toggle="tooltip"
+
                        title="Please, use this format: 888 888 8888" placeholder="888 888 8888"
-                   pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"-->
-                <!-- <div class="valid-feedback">
+                   pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12" <div class="valid-feedback">
                      Looks good!
                  </div>
                  <div class="invalid-feedback">
@@ -210,84 +140,54 @@
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationBirthDate">Date of birth</label>
-                <input type="date" class="form-control" id="validationBirthDate" placeholder="MM/DD/YYYY"
-                       pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a valid date of birth
-                </div>
+                <label for="birthDate">Date of birth</label>
+                <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="MM/DD/YYYY">
+
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationGender">Gender</label>
+                <label for="gender">Gender</label>
                 <small class="text-muted">(required)</small>
-                <select class="custom-select" id="validationGender" data-toggle="tooltip" data-placement="top"
-                        title="Please, click and choose one of this options" required>
+                <select class="custom-select" id="gender" name="gender">
                     <option value="">Choose one of these options please</option>
                     <option value="1">Male</option>
                     <option value="2">Female</option>
                     <option value="3">Don't want to provide</option>
                 </select>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please choose one of the options.
-                </div>
+
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationPassword">Password</label>
+                <label for="password">Password</label>
                 <small class="text-muted">(required)</small>
-                <input type="password" class="form-control" id="validationPassword" name="password1"
-                       placeholder="Password"
-                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" data-toggle="tooltip" data-placement="top"
-                       title="The password must contain 8 or more characters: at least one number, and one uppercase and lowercase letter"
-                       required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide a valid password
-                </div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationConfirmPassword">Confirm password</label>
+                <label for="confirmPassword">Confirm password</label>
                 <small class="text-muted">(required)</small>
-                <input type="password" class="form-control" id="validationConfirmPassword" name="password2"
-                       placeholder="Confirm password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                       data-toggle="tooltip"
-                       data-placement="top"
-                       title="The password must contain 8 or more characters: at least one number, and one uppercase and lowercase letter"
-                       required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please confirm your password
-                </div>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                       placeholder="Confirm password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
             </div>
         </div>
         <div class="form-group">
             <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customControlValidation1">
-                <label class="custom-control-label" for="customControlValidation1">Remember me</label>
+                <input type="checkbox" class="custom-control-input" id="controlValidation01" name="controlValidation01">
+                <label class="custom-control-label" for="controlValidation01">Remember me</label>
             </div>
         </div>
         <div class="form-group">
             <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customControlValidation2" required>
-                <label class="custom-control-label" for="customControlValidation2">Agree to terms and
+                <input type="checkbox" class="custom-control-input" id="controlValidation02" name="controlValidation02">
+                <label class="custom-control-label" for="controlValidation02">Agree to terms and
                     conditions.</label>
                 <small class="text-muted">(required)</small>
-                <div class="invalid-feedback">You need to agree to terms and conditions before register</div>
+
             </div>
         </div>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
+
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2019 Irina Plaksina</p>

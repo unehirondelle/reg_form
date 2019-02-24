@@ -9,11 +9,17 @@ const db = new sqlite3.Database('./db/reg_form_db.db', sqlite3.OPEN_READWRITE, (
     console.log('Connected to the reg_form_db database.');
 });
 
+app.set("views", "./views");
+app.set("view engine", "pug");
+app.get('/newUsers', function (req, res) {
+    res.render('index', { title: 'Hey', message: 'Hello there!' })
+})
+
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');});
+    res.sendFile(__dirname + '/public/index.html');});//make the default page
 /*app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname + "/public/"});
-});*/ //make the default page
+});*/ //make the default page; this piece of code with (!) piece of code doesn't allow to get the local links for js and css
 
 /*enable parsing of json objects in a body of a request to execute the POST method
 (it's disabled by default):*/
@@ -26,7 +32,7 @@ app.get('/', (req, res) => res.send('Hello World!!'));
 /*get the data (incoming request to the server) from root ('/');
 req (request) and res (result) are arguments of a callback function;*/
 
-/*app.use('/static', express.static('public'));*/ //wrong code, doesn't allow to get local links for js and css'
+/*app.use('/static', express.static('public'));*/ //(!) wrong code, doesn't allow to get local links for js and css0=
 app.use(express.static(__dirname + "/public"));
 
 app.post('/saveResults', function (req, res) {
@@ -39,6 +45,11 @@ app.post('/saveResults', function (req, res) {
         }
         console.log('A row has been inserted with rowid ${this.lastID}');
     });
+    db.all("select * from users", (err, results)=>{
+console.log(results);
+
+    });
+
     res.send("The new user has been registered!");
 });
 
@@ -65,6 +76,8 @@ app.get('/getResults', (req, res) => {
 });
 
 console.log('started @' + new Date());
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 // db.close((err) => {
