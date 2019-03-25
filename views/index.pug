@@ -1,0 +1,31 @@
+html
+  head
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css")
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js")
+
+    title= title
+  body
+    div(class="container")
+      div(class="row-fluid")
+          form(method="POST" action="/search" class="form-inline")
+            input(type="text" name="criterion")
+            input(type="submit" value="Search")
+      div(class="row-fluid")
+          if rows
+              span= 'Total records: ' + rows.length + ', searching by [' + criterion + ']'
+              table(class="table table-sm table-striped table-bordered")
+                tr
+                  th ID
+                  th Name
+                  th Lastname
+
+                -var index = 0
+                each k in rows
+                  tr
+                    td= ++index
+                    td= k.firstName
+                    td= k.lastName
+          if rows == undefined
+            div(class="alert alert-info") To get the results - please provide the criterion in the form above
